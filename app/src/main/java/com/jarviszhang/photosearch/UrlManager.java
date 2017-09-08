@@ -7,14 +7,13 @@ import android.net.Uri;
  */
 
 public class UrlManager {
-    final static String API_KEY = "08b989d04095bfea9f201780137fd360";
+    private final static String API_KEY = "08b989d04095bfea9f201780137fd360";
 
     final static String PREF_SEARCH_QUERY = "search_query";
 
-    final static String URL_END_POINT = "https://api.flicker.com/service/reset";
-    final static String URL_GET_RECENT = "flicker.photos.getRecent";
-    final static String URL_SEARCH = "flicker.photos.search";
-
+    private final static String URL_END_POINT = "https://api.flickr.com/services/rest/";
+    private final static String URL_GET_RECENT = "flickr.photos.getRecent";
+    private final static String URL_SEARCH = "flickr.photos.search";
 
     private static UrlManager instance;
 

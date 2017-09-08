@@ -11,7 +11,7 @@ public class GalleryItem {
     String farm;
 
     public String getUrl(){
-        return "http://farm"+farm+".static.flicker.com/" + server + "/" + id + "_" + secret + ".jpg";
+        return "http://farm"+farm+".static.flickr.com/" + server + "/" + id + "_" + secret + ".jpg";
     }
 
     public String getId() {

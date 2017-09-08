@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -52,11 +53,14 @@ public class GalleryAdapter extends
     public void onBindViewHolder(ViewHolder holder, int position){
         GalleryItem item = list.get(position);
 
-        Glide.with(context)
+        Picasso.with(context)
                 .load(item.getUrl())
-                //渐变下载，smooth
-                .thumbnail(0.5f)
                 .into(holder.imageView);
+//        Glide.with(context)
+//                .load(item.getUrl())
+//                //渐变下载，smooth
+//                .thumbnail(0.5f)
+//                .into(holder.imageView);
     }
 
     public void reset(){

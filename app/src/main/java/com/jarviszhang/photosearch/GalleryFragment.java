@@ -7,6 +7,7 @@ import android.app.SearchableInfo;
 import android.content.ComponentName;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -38,7 +39,7 @@ import java.util.List;
 
 public class GalleryFragment extends Fragment{
     final static String TAG = GalleryActivity.class.getSimpleName();
-    final static int NUM_COL = 3;
+    final static int NUM_COL = 2;
     final static int IMG_PER_PAGE = 100;
 
     private RequestQueue queue;
@@ -98,6 +99,9 @@ public class GalleryFragment extends Fragment{
                     }
                 }
         );
+
+        loadMore();
+
         return view;
     }
 
@@ -113,7 +117,7 @@ public class GalleryFragment extends Fragment{
         String query = PreferenceManager.getDefaultSharedPreferences(getActivity())
                 .getString(UrlManager.PREF_SEARCH_QUERY,null);
 
-        String url = UrlManager.getItemUrl(query,page);
+        final String url = UrlManager.getItemUrl(query,page);
         JsonObjectRequest request = new JsonObjectRequest(url,null,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -152,6 +156,7 @@ public class GalleryFragment extends Fragment{
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(getContext(),"Loading Error",Toast.LENGTH_SHORT)
                                 .show();
+                        System.out.println(url);
                     }
                 });
 
@@ -178,7 +183,8 @@ public class GalleryFragment extends Fragment{
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_main, menu);
 
-        searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        searchView = (SearchView) searchItem.getActionView();
 
         SearchManager manager = (SearchManager) getActivity()
                 .getSystemService(Context.SEARCH_SERVICE);
