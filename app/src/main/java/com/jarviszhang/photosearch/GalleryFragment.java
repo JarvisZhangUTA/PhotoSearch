@@ -11,7 +11,8 @@ import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
+import android.util.Log;
+import android.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -209,7 +210,7 @@ public class GalleryFragment extends Fragment{
             case R.id.action_clear:
                 if(searchView != null){
                     searchView.setQuery("", false);
-                    searchView.setIconified(false);
+                    searchView.setIconified(true);
                 }
 
                 PreferenceManager.getDefaultSharedPreferences(getActivity())
@@ -220,6 +221,7 @@ public class GalleryFragment extends Fragment{
                 refresh();
                 break;
             default:
+                Toast.makeText(getContext(),"4",Toast.LENGTH_SHORT).show();
                 handled = false;
                 break;
         }
